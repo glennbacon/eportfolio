@@ -11,28 +11,6 @@ import base64
 # change animal_shelter and AnimalShelter to match your CRUD Python module file name and class name
 from crud import CRUD
 
-###########################
-# Data Manipulation / Model
-###########################
-# update with your username and password and CRUD Python module name
-username = "user"
-password = "guest"
-host = 'dbinstance.cscciirp0cbc.us-east-2.rds.amazonaws.com'
-database_name = 'animal_shelter'
-crud = CRUD(host, username, password, database_name)
-
-# class read method must support return of cursor object and accept projection json input
-data = crud.read()
-print(type(data))
-print(data[0])
-df = pd.DataFrame.from_records(data, columns=['id', 'age_upon_outcome', 'animal_id', 'animal_type', 'breed', 'color',
-                                              'date_of_birth', 'datetime', 'monthyear', 'name', 'outcome_subtype',
-                                              'outcome_type', 'sex_upon_outcome', 'location_lat', 'location_long',
-                                              'age_upon_outcome_in_weeks'])
-print(type(df))
-result = df[df.animal_type == 'Cat']
-print(result.head(1))
-
 #########################
 # Dashboard Layout / View
 #########################
@@ -47,6 +25,23 @@ auth = dash_auth.BasicAuth(
     VALID_USERNAME_PASSWORD_PAIRS
 )
 
+###########################
+# Data Manipulation / Model
+###########################
+# update with your username and password and CRUD Python module name
+username = "user"
+password = "guest"
+host = 'dbinstance.cscciirp0cbc.us-east-2.rds.amazonaws.com'
+database_name = 'animal_shelter'
+crud = CRUD(host, username, password, database_name)
+
+# class read method must support return of cursor object and accept projection json input
+data = crud.read_all()
+df = pd.DataFrame.from_records(data, columns=['id', 'age_upon_outcome', 'animal_id', 'animal_type', 'breed', 'color',
+                                              'date_of_birth', 'datetime', 'monthyear', 'name', 'outcome_subtype',
+                                              'outcome_type', 'sex_upon_outcome', 'location_lat', 'location_long',
+                                              'age_upon_outcome_in_weeks'])
+
 # Add in Grazioso Salvare’s logo
 image_filename = 'Grazioso_Salvare_Logo.png'  # replace with your own image
 encoded_image = base64.b64encode(open(image_filename, 'rb').read())
@@ -60,9 +55,9 @@ app.layout = html.Div([
     html.Div(className='row',
              style={'display': 'flex'},
              children=[dcc.RadioItems(id='radio-button', options=[
-                 {"label": "Water Rescue", "value": "Water Rescue"},
-                 {"label": "Wilderness Rescue", "value": "Wilderness Rescue"},
-                 {"label": "Disaster Rescue", "value": "Disaster Rescue"},
+                 {"label": "Dog", "value": "Dog"},
+                 {"label": "Cat", "value": "Cat"},
+                 {"label": "Other", "value": "Other"},
                  {"label": "Reset", "value": "Reset"}])
                        ]),
     dt.DataTable(
@@ -108,23 +103,6 @@ app.layout = html.Div([
 #############################################
 # This callback will highlight a row on the data table when the user selects it
 @app.callback(
-    Output('datatable-id', 'data'),
-    [Input('radio-button', 'value')])
-def on_click(radio_value):
-    global df
-    # start case
-    if radio_value == "Water Rescue":
-        df = pd.DataFrame(list(crud.read()))  # ({"outcome":"Water"})))
-    elif radio_value == "Wilderness Rescue":
-        df = pd.DataFrame(list(crud.read()))  # ({"outcome": "Wilderness Rescue"})))
-    elif radio_value == "Disaster Rescue":
-        df = pd.DataFrame(list(crud.read()))  # ({"outcome": "Disaster Rescue"})))
-    elif radio_value == "Reset":
-        df = pd.DataFrame(list(crud.read()))
-    return df.to_dict('records')
-
-
-@app.callback(
     Output('datatable-id', 'style_data_conditional'),
     [Input('datatable-id', 'selected_columns')]
 )
@@ -142,7 +120,7 @@ def update_graphs(view_data):
     # add code for chart of your choice (e.g. pie chart) #
     dff = pd.DataFrame.from_dict(view_data)
     breeds = []
-    for i in range(0, 10):
+    for i in range(0, dff.__len__() - 1):
         breeds.append(str(dff.iloc[i, 4]))
     return [
         dcc.Graph(
@@ -176,8 +154,8 @@ def update_map(view_data):
                    dl.Marker(position=[dff.iloc[0, 13], dff.iloc[0, 14]], children=[
                        dl.Tooltip(dff.iloc[0, 4]),
                        dl.Popup([
-                           html.H1(dff.iloc[0, 10]),
-                           html.P(dff.iloc[0, 9])
+                           html.H1(dff.iloc[0, 9]),
+                           html.P(dff.iloc[0, 8])
                        ])
                    ])
                ])
