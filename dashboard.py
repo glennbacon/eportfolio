@@ -16,7 +16,7 @@ from crud import CRUD
 #########################
 # Keep this out of source code repository - save in a file or a database
 VALID_USERNAME_PASSWORD_PAIRS = {
-    'hello': 'world'
+    'guest': '123'
 }
 
 app = dash.Dash(__name__)
@@ -24,6 +24,10 @@ auth = dash_auth.BasicAuth(
     app,
     VALID_USERNAME_PASSWORD_PAIRS
 )
+
+app = dash.Dash(__name__)
+application = app.server
+app.title = 'Dashboard'
 
 ###########################
 # Data Manipulation / Model
@@ -53,13 +57,18 @@ app.layout = html.Div([
     html.Center(html.B(html.H1('Glenn Bacon SNHU CS-499 Dashboard'))),
     html.Hr(),
     html.Div(className='row',
-             style={'display': 'flex'},
-             children=[dcc.RadioItems(id='radio-button', options=[
-                 {"label": "Dog", "value": "Dog"},
-                 {"label": "Cat", "value": "Cat"},
-                 {"label": "Other", "value": "Other"},
-                 {"label": "Reset", "value": "Reset"}])
-                       ]),
+             style={'flex-wrap': 'nowrap'},
+             children=[dcc.Dropdown(id='radio-button',
+                 options=[
+                     {"label": "All Animal Types", "value": "Reset"},
+                     {"label": "Dog", "value": "Dog"},
+                     {"label": "Cat", "value": "Cat"},
+                     {"label": "Other", "value": "Other"},
+                 ],
+                 value='Reset',
+                 clearable=False
+             )
+             ]),
     dt.DataTable(
         id='datatable-id',
         columns=[
@@ -101,6 +110,29 @@ app.layout = html.Div([
 #############################################
 # Interaction Between Components / Controller
 #############################################
+@app.callback(
+    Output('datatable-id', 'data'),
+    [Input('radio-button', 'value')])
+def on_click(radio_value):
+    global df
+    global data
+    # start case
+    if radio_value == "Dog":
+        data = crud.read("animal_type", "Dog")
+    elif radio_value == "Cat":
+        data = crud.read("animal_type", "Cat")
+    elif radio_value == "Other":
+        data = crud.read("animal_type", "Other")
+    elif radio_value == "Reset":
+        data = crud.read_all()
+    df = pd.DataFrame.from_records(data,
+                                   columns=['id', 'age_upon_outcome', 'animal_id', 'animal_type', 'breed', 'color',
+                                            'date_of_birth', 'datetime', 'monthyear', 'name', 'outcome_subtype',
+                                            'outcome_type', 'sex_upon_outcome', 'location_lat', 'location_long',
+                                            'age_upon_outcome_in_weeks'])
+    return df.to_dict('records')
+
+
 # This callback will highlight a row on the data table when the user selects it
 @app.callback(
     Output('datatable-id', 'style_data_conditional'),
@@ -163,4 +195,4 @@ def update_map(view_data):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    application.run(port=8080)
