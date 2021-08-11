@@ -27,7 +27,7 @@ class CRUD(object):
 
     # Create method to implement the R in CRUD return many results
     def read(self, key, value):
-        query = "SELECT * FROM animals" + "WHERE " + key + "= " + value
+        query = "SELECT * FROM animals" + " WHERE " + key + " = " + "\'" + value + "\'"
         self.db_cursor.execute(query)
         query_result = self.db_cursor.fetchall()
         return query_result
