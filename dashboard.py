@@ -43,7 +43,6 @@ df = pd.DataFrame.from_records(data, columns=['id', 'age_upon_outcome', 'animal_
                                               'outcome_type', 'sex_upon_outcome', 'location_lat', 'location_long',
                                               'age_upon_outcome_in_weeks'])
 
-
 #########################
 # Dashboard Layout / View
 #########################
@@ -134,6 +133,7 @@ def on_click(radio_value):
                                             'age_upon_outcome_in_weeks'])
     return df.to_dict('records')
 
+
 # pie chart graph of animal types
 @app.callback(
     Output('graph-id', "children"),
@@ -159,6 +159,7 @@ def update_graphs(view_data):
             }
         )
     ]
+
 
 # map with market of first row of chart
 @app.callback(
