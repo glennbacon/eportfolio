@@ -11,9 +11,7 @@ import base64
 # change animal_shelter and AnimalShelter to match your CRUD Python module file name and class name
 from crud import CRUD
 
-#########################
-# Dashboard Layout / View
-#########################
+# Uses authentication
 # Keep this out of source code repository - save in a file or a database
 VALID_USERNAME_PASSWORD_PAIRS = {
     'guest': '123'
@@ -46,6 +44,10 @@ df = pd.DataFrame.from_records(data, columns=['id', 'age_upon_outcome', 'animal_
                                               'outcome_type', 'sex_upon_outcome', 'location_lat', 'location_long',
                                               'age_upon_outcome_in_weeks'])
 
+
+#########################
+# Dashboard Layout / View
+#########################
 # Add in Grazioso Salvare’s logo
 image_filename = 'Grazioso_Salvare_Logo.png'  # replace with your own image
 encoded_image = base64.b64encode(open(image_filename, 'rb').read())
@@ -56,9 +58,11 @@ app.layout = html.Div([
                                                           style={'width': '100px', 'height': '100px'})),
     html.Center(html.B(html.H1('Glenn Bacon SNHU CS-499 Dashboard'))),
     html.Hr(),
+
+    # Drop down display animal by type
     html.Div(className='row',
              style={'flex-wrap': 'nowrap'},
-             children=[dcc.Dropdown(id='radio-button', options=[
+             children=[dcc.Dropdown(id='dropdown-button', options=[
                  {"label": "All Animal Types", "value": "Reset"},
                  {"label": "Dog", "value": "Dog"},
                  {"label": "Cat", "value": "Cat"},
@@ -108,9 +112,10 @@ app.layout = html.Div([
 #############################################
 # Interaction Between Components / Controller
 #############################################
+# Dropdown of animal types
 @app.callback(
     Output('datatable-id', 'data'),
-    [Input('radio-button', 'value')])
+    [Input('dropdown-button', 'value')])
 def on_click(radio_value):
     global df
     global data
@@ -130,7 +135,7 @@ def on_click(radio_value):
                                             'age_upon_outcome_in_weeks'])
     return df.to_dict('records')
 
-
+# pie chart graph of animal types
 @app.callback(
     Output('graph-id', "children"),
     [Input('datatable-id', "derived_viewport_data")])
@@ -156,7 +161,7 @@ def update_graphs(view_data):
         )
     ]
 
-
+# map with market of first row of chart
 @app.callback(
     Output('map-id', "children"),
     [Input('datatable-id', "derived_viewport_data")])
