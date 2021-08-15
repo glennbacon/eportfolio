@@ -58,17 +58,16 @@ app.layout = html.Div([
     html.Hr(),
     html.Div(className='row',
              style={'flex-wrap': 'nowrap'},
-             children=[dcc.Dropdown(id='radio-button',
-                 options=[
-                     {"label": "All Animal Types", "value": "Reset"},
-                     {"label": "Dog", "value": "Dog"},
-                     {"label": "Cat", "value": "Cat"},
-                     {"label": "Other", "value": "Other"},
-                 ],
-                 value='Reset',
-                 clearable=False
-             )
-             ]),
+             children=[dcc.Dropdown(id='radio-button', options=[
+                 {"label": "All Animal Types", "value": "Reset"},
+                 {"label": "Dog", "value": "Dog"},
+                 {"label": "Cat", "value": "Cat"},
+                 {"label": "Other", "value": "Other"},
+             ],
+                                    value='Reset',
+                                    clearable=False
+                                    )
+                       ]),
     dt.DataTable(
         id='datatable-id',
         columns=[
@@ -81,7 +80,6 @@ app.layout = html.Div([
         sort_action="native",
         sort_mode="multi",
         column_selectable=False,
-        row_selectable=False,
         row_deletable=False,
         selected_columns=[],
         selected_rows=[],
@@ -133,18 +131,6 @@ def on_click(radio_value):
     return df.to_dict('records')
 
 
-# This callback will highlight a row on the data table when the user selects it
-@app.callback(
-    Output('datatable-id', 'style_data_conditional'),
-    [Input('datatable-id', 'selected_columns')]
-)
-def update_styles(selected_columns):
-    return [{
-        'if': {'column_id': i},
-        'background_color': '#D2F3FF'
-    } for i in selected_columns]
-
-
 @app.callback(
     Output('graph-id', "children"),
     [Input('datatable-id', "derived_viewport_data")])
@@ -175,23 +161,26 @@ def update_graphs(view_data):
     Output('map-id', "children"),
     [Input('datatable-id', "derived_viewport_data")])
 def update_map(view_data):
-    # Add in the code for your geolocation chart
-    dff = pd.DataFrame.from_dict(view_data)
-    # Austin TX is at [30.75,-97.48]
-    return [
-        dl.Map(style={'width': '1000px', 'height': '500px'}, center=[dff.iloc[0, 13], dff.iloc[0, 14]], zoom=10,
-               children=[
-                   dl.TileLayer(id="base-layer-id"),
-                   # Marker with tool tip and popup
-                   dl.Marker(position=[dff.iloc[0, 13], dff.iloc[0, 14]], children=[
-                       dl.Tooltip(dff.iloc[0, 4]),
-                       dl.Popup([
-                           html.H1(dff.iloc[0, 9]),
-                           html.P(dff.iloc[0, 8])
+    if view_data is None:
+        return []
+    else:
+        # Add in the code for your geolocation chart
+        dff = pd.DataFrame.from_dict(view_data)
+        # Austin TX is at [30.75,-97.48]
+        return [
+            dl.Map(style={'width': '1000px', 'height': '500px'}, center=[dff.iloc[0, 13], dff.iloc[0, 14]], zoom=10,
+                   children=[
+                       dl.TileLayer(id="base-layer-id"),
+                       # Marker with tool tip and popup
+                       dl.Marker(position=[dff.iloc[0, 13], dff.iloc[0, 14]], children=[
+                           dl.Tooltip(dff.iloc[0, 4]),
+                           dl.Popup([
+                               html.H1(dff.iloc[0, 9]),
+                               html.P(dff.iloc[0, 8])
+                           ])
                        ])
                    ])
-               ])
-    ]
+        ]
 
 
 if __name__ == '__main__':
