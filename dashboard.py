@@ -23,7 +23,6 @@ auth = dash_auth.BasicAuth(
     VALID_USERNAME_PASSWORD_PAIRS
 )
 
-app = dash.Dash(__name__)
 application = app.server
 app.title = 'Dashboard'
 
