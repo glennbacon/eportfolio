@@ -18,13 +18,13 @@ VALID_USERNAME_PASSWORD_PAIRS = {
 }
 
 app = dash.Dash(__name__)
+application = app.server
+app.title = 'Dashboard'
+
 auth = dash_auth.BasicAuth(
     app,
     VALID_USERNAME_PASSWORD_PAIRS
 )
-
-application = app.server
-app.title = 'Dashboard'
 
 ###########################
 # Data Manipulation / Model
