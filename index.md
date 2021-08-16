@@ -1,13 +1,13 @@
 # Welcome to Glenn Bacon's ePortfolio page!
 
 ## Final Project Links
-1. [Dashboard app running on AWS](http://dashboard-env.eba-mcpfprke.us-east-2.elasticbeanstalk.com/)
+1. <a href="http://dashboard-env.eba-mcpfprke.us-east-2.elasticbeanstalk.com/">Dashboard app running on AWS</a>
    - Username: **guest	
    - Password: **123
 
-2. [ePortfolio webpage](https://glennbacon.github.io/eportfolio/)
-3. [GitHub repository of Dashboard app](https://github.com/glennbacon/eportfolio)
-4. [Video Code Review](https://www.youtube.com/watch?v=LhGobm9EJWg)
+2. <a href="https://glennbacon.github.io/eportfolio/">ePortfolio webpage</a>
+3. <a href="https://github.com/glennbacon/eportfolio">GitHub repository of Dashboard app</a>
+4. <a href="https://www.youtube.com/watch?v=LhGobm9EJWg">Video Code Review</a>
 
 
 ## Milestone One: Code Review of Dashboard Application
@@ -47,7 +47,7 @@ The view_data is the viewable data in the table from the current html page. The 
 <img src="https://bn1305files.storage.live.com/y4mMAdwWWkHYkURyYHEsrICnBlwiyUFMXws1XRokXwjpxigsEDj2O2rRfjrfAsecMhhNRbAkkuLNjVuPobDKf7IYbqerU0Y1AdMVn0gmtR5Kpu57o-Sdp5cdcK4-v90p9AV53Bd9EiZPqBl8kb3YIWn5RPAPt7hrOfv5Oy2n2hGm9jtUasLdVRZ13Eho3ip3urg?width=466&height=416&cropmode=none" width="466" height="416" />
  
 ### Reflection
-The challenges faced in Enhancement Two was to understand what data structures and methods/algorithms needed to be used to successfully use MySQL database instead of MongoDB. Research from pandas website and specifically starting from the webpage about [Pandas DataFrame](https://pandas.pydata.org/pandas-docs/stable/reference/frame.html) was helpful. Know what data types and structures are returned from MySQL database and pandas.DataFrame can also be discovered by using Python type() method and print() to view the data as seen below.
+The challenges faced in Enhancement Two was to understand what data structures and methods/algorithms needed to be used to successfully use MySQL database instead of MongoDB. Research from pandas website and specifically starting from the webpage about <a href="https://pandas.pydata.org/pandas-docs/stable/reference/frame.html">Pandas DataFrame</a> was helpful. Know what data types and structures are returned from MySQL database and pandas.DataFrame can also be discovered by using Python type() method and print() to view the data as seen below.
  
 <img src="https://bn1305files.storage.live.com/y4mMtCVlPNhebryWoIaxVYd9894a-WYAxUGWLvosu-Y-O7n4taUGVOUewvxZ3dds5wlrkH-Qfo5BdoSVW6tT5eSWKh2izMCdJXJccFzgHYpRhKomzc2QDRa6q32PVtead_0Ia7miBW5MIcZDi-UNd1fO1QboWc0yWAG3_rSkIrKeqSHipum2UlcawuxSkV_-rOK?width=624&height=163&cropmode=none" width="624" height="163" />
 
@@ -63,14 +63,4 @@ Project Two Dashboard was the single artifact chosen for the ePortfolio. Instead
 
 ### Objectives and Enhancements
 Enhancement for Project Two Dashboard artifact database is to use a MySQL database. The Dashboard app must successfully connect, query, and receive necessary data so it can display the data in a meaningful way to the user. The objective was met by using MySQL Connector Python version 8.0.25 from dev.mysql.com. Created a Python module file name crud.py and class name CRUD. The module imports mysql.connector and has a few methods that makes it easy for the app to connect and query/read data from the database. A MySQL database was installed and created on local development laptop. The Project Two Dashboard app artifact was able to successfully connect to the local MySQL database, query, and receive the data. To test and use a cloud database an Amazon AWS RDS MySQL database was created. Running the Dashboard app locally on a laptop was able to connect to the remote cloud-based MySQL database, query and receive the data. The Dashboard app is a plotly dash app which can be deployed to an Amazon AWS Elastic Beanstock. Ideally, the finished and polished Dashboard app should be running on Amazon AWS Elastic Beanstock and connecting to a MySQL database from Amazon AWS RDS MySQL.
-
-
-
-
-
- 
-
-
-
-
 
