@@ -1,13 +1,13 @@
 # Welcome to Glenn Bacon's ePortfolio page!
 
 ## Final Project Links
-1. Dashboard app running on AWS http://dashboard-env.eba-mcpfprke.us-east-2.elasticbeanstalk.com/
-   - Username: guest	
-   - Password: 123
+1. [Dashboard app running on AWS](http://dashboard-env.eba-mcpfprke.us-east-2.elasticbeanstalk.com/)
+   - Username: **guest	
+   - Password: **123
 
-2. ePortfolio webpage https://glennbacon.github.io/eportfolio/
-3. GitHub repository of Dashboard app https://github.com/glennbacon/eportfolio
-4. Video Code Review https://www.youtube.com/watch?v=LhGobm9EJWg
+2. [ePortfolio webpage](https://glennbacon.github.io/eportfolio/)
+3. [GitHub repository of Dashboard app](https://github.com/glennbacon/eportfolio)
+4. [Video Code Review](https://www.youtube.com/watch?v=LhGobm9EJWg)
 
 
 ## Milestone One: Code Review of Dashboard Application
@@ -47,7 +47,7 @@ The view_data is the viewable data in the table from the current html page. The 
 <img src="https://bn1305files.storage.live.com/y4mMAdwWWkHYkURyYHEsrICnBlwiyUFMXws1XRokXwjpxigsEDj2O2rRfjrfAsecMhhNRbAkkuLNjVuPobDKf7IYbqerU0Y1AdMVn0gmtR5Kpu57o-Sdp5cdcK4-v90p9AV53Bd9EiZPqBl8kb3YIWn5RPAPt7hrOfv5Oy2n2hGm9jtUasLdVRZ13Eho3ip3urg?width=466&height=416&cropmode=none" width="466" height="416" />
  
 ### Reflection
-The challenges faced in Enhancement Two was to understand what data structures and methods/algorithms needed to be used to successfully use MySQL database instead of MongoDB. Research from pandas website and specifically starting from the webpage about [Pandas DataFrame] (https://pandas.pydata.org/pandas-docs/stable/reference/frame.html) was helpful. Know what data types and structures are returned from MySQL database and pandas.DataFrame can also be discovered by using Python type() method and print() to view the data as seen below.
+The challenges faced in Enhancement Two was to understand what data structures and methods/algorithms needed to be used to successfully use MySQL database instead of MongoDB. Research from pandas website and specifically starting from the webpage about [Pandas DataFrame](https://pandas.pydata.org/pandas-docs/stable/reference/frame.html) was helpful. Know what data types and structures are returned from MySQL database and pandas.DataFrame can also be discovered by using Python type() method and print() to view the data as seen below.
  
 <img src="https://bn1305files.storage.live.com/y4mMtCVlPNhebryWoIaxVYd9894a-WYAxUGWLvosu-Y-O7n4taUGVOUewvxZ3dds5wlrkH-Qfo5BdoSVW6tT5eSWKh2izMCdJXJccFzgHYpRhKomzc2QDRa6q32PVtead_0Ia7miBW5MIcZDi-UNd1fO1QboWc0yWAG3_rSkIrKeqSHipum2UlcawuxSkV_-rOK?width=624&height=163&cropmode=none" width="624" height="163" />
 
