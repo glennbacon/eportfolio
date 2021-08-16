@@ -10,7 +10,7 @@
 4. Video Code Review https://www.youtube.com/watch?v=LhGobm9EJWg
 
 
-## Code Review of Dashboard Application
+## Milestone One: Code Review of Dashboard Application
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/LhGobm9EJWg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -53,6 +53,22 @@ The challenges faced in Enhancement Two was to understand what data structures a
 
 <img src="https://bn1305files.storage.live.com/y4m2aH4cCkMYMWXJln5uuUqh2tpvZ_c69dumgN7aBfzx48z9ibqqaPg9q-A_arr70G4GchqSjyRLJdR57EOKnEcz9uhJJdfvN36t3TTsvKEtzmaY00sY-E_OWjN-Qtjs_L6ibX0Gs9wBLxVtmMh5SepslTDqKerbkxKIeUeCohyigMhgSuTx6J88112oFM99i4i?width=624&height=182&cropmode=none" width="624" height="182" />
 
+
+## Milestone Four: Enhancement Two: Databases
+### Artifact
+The artifact chosen for the ePortfolio is Project Two Dashboard from the course CS-340 Client Server Development. The Project Two Dashboard application was created June 2020 and has been chosen as the artifact to fulfill all three categories of software design and engineering, algorithms and data structure, and databases. The artifact was created to provide functionality to develop a web application that connects a client-side user interface to a database. The project is a portable Python module that has create and read functionality and connectivity to a MongoDB database. To meet the requirements of ePortfolio Project Two Dashboard will need a design flowchart, interface enhancements, and database changed to a MySQL database.
+
+### Inclusion
+Project Two Dashboard was the single artifact chosen for the ePortfolio. Instead of choosing and using three different artifacts one artifact was chosen to showcase all software engineering skills and abilities in software development. A polished fully functional application that can show potential employers that as a software engineer can design and develop from start to finish with all the necessary skills and abilities. Project Two Dashboard artifact enhancement is to change from a MongoDB database to a MySQL database.
+
+### Objectives and Enhancements
+Enhancement for Project Two Dashboard artifact database is to use a MySQL database. The Dashboard app must successfully connect, query, and receive necessary data so it can display the data in a meaningful way to the user. The objective was met by using MySQL Connector Python version 8.0.25 from dev.mysql.com. Created a Python module file name crud.py and class name CRUD. The module imports mysql.connector and has a few methods that makes it easy for the app to connect and query/read data from the database. A MySQL database was installed and created on local development laptop. The Project Two Dashboard app artifact was able to successfully connect to the local MySQL database, query, and receive the data. To test and use a cloud database an Amazon AWS RDS MySQL database was created. Running the Dashboard app locally on a laptop was able to connect to the remote cloud-based MySQL database, query and receive the data. The Dashboard app is a plotly dash app which can be deployed to an Amazon AWS Elastic Beanstock. Ideally, the finished and polished Dashboard app should be running on Amazon AWS Elastic Beanstock and connecting to a MySQL database from Amazon AWS RDS MySQL.
+
+
+
+
+
+ 
 
 
 
