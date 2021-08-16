@@ -2,8 +2,8 @@
 
 ## Final Project Links
 1. <a href="http://dashboard-env.eba-mcpfprke.us-east-2.elasticbeanstalk.com/">Dashboard app running on AWS</a>
-   - Username: **guest	
-   - Password: **123
+   - Username: <strong>guest
+   - Password: <strong>123
 
 2. <a href="https://glennbacon.github.io/eportfolio/">ePortfolio webpage</a>
 3. <a href="https://github.com/glennbacon/eportfolio">GitHub repository of Dashboard app</a>
